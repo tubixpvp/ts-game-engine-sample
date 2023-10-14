@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "target": "es6",
+    "sourceMap": true,
+    "outFile": "bin/game.js",
+    "experimentalDecorators": true,
+    "removeComments": true
+  },
+  "include": [
+    "./../GameEngine/build/lib.d.ts",
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
