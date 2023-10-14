@@ -3,4 +3,4 @@
 TypeScript game engine sample project.
 
 Engine core repository:
-# ts-game-engine
+https://github.com/tubixpvp/ts-game-engine
