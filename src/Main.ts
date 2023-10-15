@@ -3,16 +3,26 @@ module main {
     import IGameObject = gameengine.gameObject.IGameObject;
     import GameObject = gameengine.gameObject.GameObject;
     import Camera3D = gameengine.engine.components.Camera3D;
+    import MeshLoader = gameengine.engine.resources.MeshLoader;
+    import MeshRenderer = gameengine.engine.components.MeshRenderer;
     export class Main {
         public constructor() {
-            let scene: GameScene = new GameScene();
+            const scene: GameScene = new GameScene();
 
-            let cameraObject: IGameObject = new GameObject();
-            let camera: Camera3D = cameraObject.addComponent(Camera3D);
+            const cameraObject: IGameObject = new GameObject();
+            const camera: Camera3D = cameraObject.addComponent(Camera3D);
 
             scene.addChild(cameraObject);
 
             scene.start();
+
+            MeshLoader.loadMesh("fbx", "resources/model.fbx", (meshObject:IGameObject):void =>
+            {
+                let mesh:MeshRenderer = meshObject.getComponent(MeshRenderer);
+                console.log(mesh);
+
+                scene.addChild(meshObject);
+            });
         }
     }
 }
