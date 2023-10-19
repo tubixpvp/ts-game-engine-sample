@@ -16,7 +16,7 @@ module main {
 
             scene.start();
 
-            MeshLoader.loadMesh("fbx", "resources/model.fbx", (meshObject:IGameObject):void =>
+            MeshLoader.loadMesh("3ds", "resources/object.3ds", (meshObject:IGameObject):void =>
             {
                 let mesh:MeshRenderer = meshObject.getComponent(MeshRenderer);
                 console.log(mesh);

@@ -12,7 +12,7 @@ var main;
             const camera = cameraObject.addComponent(Camera3D);
             scene.addChild(cameraObject);
             scene.start();
-            MeshLoader.loadMesh("fbx", "resources/model.fbx", (meshObject) => {
+            MeshLoader.loadMesh("3ds", "resources/object.3ds", (meshObject) => {
                 let mesh = meshObject.getComponent(MeshRenderer);
                 console.log(mesh);
                 scene.addChild(meshObject);
