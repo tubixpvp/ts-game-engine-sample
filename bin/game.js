@@ -13,20 +13,20 @@ var main;
             const cameraObject = new GameObject();
             cameraObject.addComponent(Camera3D);
             const cameraTransform = cameraObject.getComponent(Transform3D);
-            cameraTransform.position.z -= 1000;
-            cameraTransform.getObject3D().lookAt(0, 0, 0);
+            cameraTransform.position.z = 1000;
             scene.addChild(cameraObject);
             scene.start();
             MeshLoader.loadMesh("fbx", "resources/object.fbx", (meshObject) => {
-                const mesh = meshObject.getComponent(MeshRenderer);
                 const texture = new Image();
                 texture.onload = () => {
-                    mesh.material = new TextureMaterial(TextureMaterial.MESH_BASIC, texture);
                     scene.addChild(meshObject);
-                    meshObject.getComponent(Transform3D).position.set(0, 0, 0);
-                    console.log(mesh);
+                    for (let meshRenderer of meshObject.getComponentsInChildren(MeshRenderer)) {
+                        meshRenderer.material = new TextureMaterial(TextureMaterial.MESH_BASIC, texture);
+                        meshRenderer.gameObject.getComponent(Transform3D).position.set(0, 0, 0);
+                    }
+                    console.log(meshObject);
                 };
-                texture.src = "resources/texture.jpg";
+                texture.src = "resources/texture.jpeg";
             });
         }
     }

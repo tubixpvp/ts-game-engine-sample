@@ -15,8 +15,7 @@ module main {
             cameraObject.addComponent(Camera3D);
 
             const cameraTransform:Transform3D = cameraObject.getComponent(Transform3D);
-            cameraTransform.position.z -= 1000;
-            cameraTransform.getObject3D().lookAt(0,0,0);
+            cameraTransform.position.z = 1000;
 
             scene.addChild(cameraObject);
 
@@ -24,19 +23,19 @@ module main {
 
             MeshLoader.loadMesh("fbx", "resources/object.fbx", (meshObject:IGameObject):void =>
             {
-                const mesh:MeshRenderer = meshObject.getComponent(MeshRenderer);
-
                 const texture:HTMLImageElement = new Image();
-                texture.onload = ()=>{
-                    mesh.material = new TextureMaterial(TextureMaterial.MESH_BASIC,texture);
-
+                texture.onload = ():void=>{
                     scene.addChild(meshObject);
 
-                    meshObject.getComponent(Transform3D).position.set(0,0,0);
+                    for(let meshRenderer of meshObject.getComponentsInChildren(MeshRenderer))
+                    {
+                        meshRenderer.material = new TextureMaterial(TextureMaterial.MESH_BASIC, texture);
+                        meshRenderer.gameObject.getComponent(Transform3D).position.set(0,0,0);
+                    }
 
-                    console.log(mesh);
+                    console.log(meshObject);
                 };
-                texture.src = "resources/texture.jpg";
+                texture.src = "resources/texture.jpeg";
             });
         }
     }
